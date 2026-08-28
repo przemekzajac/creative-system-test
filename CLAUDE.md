@@ -41,3 +41,26 @@ backdrop must be fully keyed out — no white box, no white halo or fringe aroun
 the fur and ears. The dog sits directly on the `BACKGROUNDS` color.
 
 > Asset files pending — source images were pasted into chat and not available on disk.
+
+## Deliverables
+
+### Meta ads — 8 variations (3:4)
+
+Built with Nano Banana 2 Lite I2I (modelId `2453`, group `414`), settings
+`aspect_ratio: 3:4`, `quality: 1k`. Output is 896×1200 px.
+
+Layout, all centered, top to bottom: TEXT headline → DOG cutout →
+`PAWS & CHEW` → `Yummie gummies`.
+
+| # | DOG | TEXT | BACKGROUND | File |
+| - | --- | ---- | ---------- | ---- |
+| 1 | Frenchie | No job. 2 incomes. No problem. | Ice Blue | `assets/ads/01-frenchie-nojob-iceblue.png` |
+| 2 | Frenchie | No job. 2 incomes. No problem. | Sea Glass | `assets/ads/02-frenchie-nojob-seaglass.png` |
+| 3 | Frenchie | Treat or supplement? Both. | Ice Blue | `assets/ads/03-frenchie-treat-iceblue.png` |
+| 4 | Frenchie | Treat or supplement? Both. | Sea Glass | `assets/ads/04-frenchie-treat-seaglass.png` |
+| 5 | Chihuahua | No job. 2 incomes. No problem. | Ice Blue | `assets/ads/05-chihuahua-nojob-iceblue.png` |
+| 6 | Chihuahua | No job. 2 incomes. No problem. | Sea Glass | `assets/ads/06-chihuahua-nojob-seaglass.png` |
+| 7 | Chihuahua | Treat or supplement? Both. | Ice Blue | `assets/ads/07-chihuahua-treat-iceblue.png` |
+| 8 | Chihuahua | Treat or supplement? Both. | Sea Glass | `assets/ads/08-chihuahua-treat-seaglass.png` |
+
+Verified: 0% near-white pixels in every file — the white backdrop is fully keyed out.
