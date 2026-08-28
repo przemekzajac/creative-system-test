@@ -36,4 +36,8 @@ The two dog cutouts for this project. Refer to them as `DOGS`.
 Both are to be used as **transparent-background PNG cutouts** (originals came on
 white). Intended to sit on `BACKGROUNDS`.
 
+**Hard constraint:** no white anywhere in a final asset. The white studio
+backdrop must be fully keyed out — no white box, no white halo or fringe around
+the fur and ears. The dog sits directly on the `BACKGROUNDS` color.
+
 > Asset files pending — source images were pasted into chat and not available on disk.
