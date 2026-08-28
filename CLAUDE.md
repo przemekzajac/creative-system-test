@@ -12,3 +12,12 @@ The two light background colors for this project. Refer to them as `BACKGROUNDS`
 | Sea Glass | `#A8D5C4` | Muted mint with a grey undertone. Pairs with sand, terracotta, deep navy.     |
 
 Matched lightness (~L 82) and saturation, so they read as an intentional pair.
+
+## Copy
+
+### TEXTS
+
+The two headline texts for this project. Refer to them as `TEXTS`.
+
+1. No job. 2 incomes. No problem.
+2. Treat or supplement? Both.
