@@ -5,6 +5,7 @@ import SwiftUI
 ///   price + currency
 ///   big colored day return
 ///   session / updated footer
+/// Left-aligned, vertically centered on the screen.
 struct StockCardView: View {
     let stock: Stock
     let quote: Quote?
@@ -14,13 +15,15 @@ struct StockCardView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
+            Spacer(minLength: 0)
             header
             priceLine
             returnLine
-            Spacer(minLength: 0)
             footer
+                .padding(.top, 6)
+            Spacer(minLength: 0)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .padding(.horizontal, 8)
         .padding(.bottom, 4)
         .background(Theme.background)
