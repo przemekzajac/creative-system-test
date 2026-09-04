@@ -12,7 +12,7 @@ scroll through them, alphabetical by ticker.
 └────────────────────────┘
 ```
 
-Style follows Apple's *Activity Digital* watch face: black background, SF Rounded, heavy
+Style follows Apple's *Activity Digital* watch face: black background, SF Pro, bold
 numerals in the Activity ring colors (green `#92E82A` up, red `#FA114F` down, white flat).
 
 ## Data
@@ -29,6 +29,9 @@ numerals in the Activity ring colors (green `#92E82A` up, red `#FA114F` down, wh
   with a local Mon–Fri 09:30–16:00 ET fallback if that call fails.
 
 ## Setup (needs a Mac with Xcode 15+)
+
+Never used Xcode? Read [GETTING-STARTED.md](GETTING-STARTED.md) instead; it covers every step
+from installing Xcode to the App Store.
 
 1. Get a free API key at <https://finnhub.io/register> and paste it into
    `StockWatch/Secrets.swift` (replace `YOUR_FINNHUB_API_KEY`).
@@ -65,7 +68,7 @@ numerals in the Activity ring colors (green `#92E82A` up, red `#FA114F` down, wh
 | `Store/QuoteStore.swift` | Observable state + foreground refresh loop |
 | `Views/ContentView.swift` | Vertical crown-driven pager |
 | `Views/StockCardView.swift` | The three-line stock card |
-| `Views/Theme.swift` | Colors and rounded font helper |
+| `Views/Theme.swift` | Colors and font helper |
 
 ## Roadmap
 

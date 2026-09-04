@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Visual language borrowed from Apple's "Activity Digital" watch face:
-/// black background, SF Rounded, heavy numerals in the Activity ring colors.
+/// black background, bold SF Pro numerals in the Activity ring colors.
 enum Theme {
     static let background = Color.black
     /// Activity "Exercise" ring green.
@@ -22,7 +22,9 @@ enum Theme {
 }
 
 extension Font {
-    static func rounded(_ size: CGFloat, weight: Font.Weight) -> Font {
-        .system(size: size, weight: weight, design: .rounded)
+    /// SF Pro at the given size and weight. watchOS substitutes SF Compact automatically,
+    /// the same face the built-in watch faces and Stocks complications use.
+    static func app(_ size: CGFloat, weight: Font.Weight) -> Font {
+        .system(size: size, weight: weight, design: .default)
     }
 }

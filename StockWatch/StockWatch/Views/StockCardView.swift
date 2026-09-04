@@ -38,7 +38,7 @@ struct StockCardView: View {
                 .clipShape(Circle())
                 .accessibilityHidden(true)
             Text(stock.ticker)
-                .font(.rounded(24, weight: .bold))
+                .font(.app(24, weight: .bold))
                 .foregroundStyle(.white)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
@@ -49,11 +49,11 @@ struct StockCardView: View {
     private var priceLine: some View {
         HStack(alignment: .firstTextBaseline, spacing: 5) {
             Text(quote?.formattedPrice ?? "—")
-                .font(.rounded(22, weight: .semibold))
+                .font(.app(22, weight: .semibold))
                 .foregroundStyle(.white)
                 .monospacedDigit()
             Text(stock.currency)
-                .font(.rounded(14, weight: .semibold))
+                .font(.app(14, weight: .semibold))
                 .foregroundStyle(Theme.secondaryText)
         }
         .lineLimit(1)
@@ -62,7 +62,7 @@ struct StockCardView: View {
 
     private var returnLine: some View {
         Text(quote?.formattedChangePercent ?? "—.——%")
-            .font(.rounded(52, weight: .heavy))
+            .font(.app(52, weight: .bold))
             .foregroundStyle(Theme.returnColor(for: quote))
             .monospacedDigit()
             .lineLimit(1)
@@ -73,7 +73,7 @@ struct StockCardView: View {
 
     private var footer: some View {
         Text(footerText)
-            .font(.rounded(12, weight: .semibold))
+            .font(.app(12, weight: .semibold))
             .foregroundStyle(error == nil ? Color.white : Theme.negative)
             .textCase(.uppercase)
             .lineLimit(1)
