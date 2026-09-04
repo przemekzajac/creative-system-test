@@ -75,3 +75,5 @@ from installing Xcode to the App Store.
 - [ ] Complication / widget showing one favourite ticker
 - [ ] Watchlist editing (iPhone companion or on-watch list)
 - [ ] Background refresh so the first frame after raising the wrist is not stale
+
+App icon: Noto Emoji rabbit face (Apache 2.0, github.com/googlefonts/noto-emoji) on black.
