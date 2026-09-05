@@ -9,6 +9,12 @@ enum Secrets {
 
     static let finnhubAPIKey = ""
 
+    //  Crypto prices need no key. If CoinGecko ever answers "Rate limited",
+    //  get a free demo key at https://www.coingecko.com/en/developers/dashboard
+    //  and paste it between these quotes.
+
+    static let coinGeckoDemoKey = ""
+
     // ─────────────────────────────────────────────────────────────────────
     //  Nothing below this line needs editing.
     // ─────────────────────────────────────────────────────────────────────

@@ -17,8 +17,12 @@ numerals in the Activity ring colors (green `#92E82A` up, red `#FA114F` down, wh
 
 ## Data
 
-- **Source:** [Finnhub](https://finnhub.io) free tier. Real-time US quotes (IEX-sourced),
+- **Stocks:** [Finnhub](https://finnhub.io) free tier. Real-time US quotes (IEX-sourced),
   60 REST calls/min, personal non-commercial use.
+- **Crypto:** [CoinGecko](https://www.coingecko.com/en/api) public API, no key required.
+  One `/simple/price` call covers every coin, and its change is a rolling **24-hour**
+  figure rather than a session return, so those cards are labelled `24H`. An optional free
+  demo key in `Secrets.swift` raises the shared anonymous rate limit.
 - **Return** = Finnhub's `dp` field = (last price − previous close) / previous close.
   Rounded to 0.01%; the color is decided on the rounded value, so `+0.00%` is white.
 - **Cadence:** every 30 s while the app is on screen during the regular session, 60 s otherwise.
@@ -42,9 +46,11 @@ from installing Xcode to the App Store.
    account extends that to a year).
 4. Run on the simulator (e.g. *Apple Watch Series 10 45mm*) or on your paired watch.
 
-## Adding a stock
+## Adding a stock or coin
 
-1. Add a `Stock(ticker:name:)` line to `Watchlist.stocks` in `StockWatch/Models/Stock.swift`.
+1. Add a `Stock(ticker:name:)` line to `Watchlist.stocks`, or a
+   `.crypto("TICKER", "Name", coinID: "coingecko-id")` line to `Watchlist.coins`, in
+   `StockWatch/Models/Stock.swift`. Stocks sort alphabetically; coins keep their listed order.
 2. Add a circle-clipped 200×200 PNG as `Assets.xcassets/Logos/<TICKER>.imageset/<TICKER>.png`
    with the same `Contents.json` as the existing ones. Logos in this repo came from
    `assets.parqet.com/logos/symbol/<TICKER>` and `financialmodelingprep.com/image-stock/<TICKER>.png`.
@@ -56,6 +62,7 @@ from installing Xcode to the App Store.
 | `Models/Stock.swift` | `Stock` + the hardcoded `Watchlist` |
 | `Models/Quote.swift` | `Quote` + price/return formatting rules |
 | `Services/FinnhubClient.swift` | `/quote` and `/stock/market-status` calls |
+| `Services/CoinGeckoClient.swift` | `/simple/price` call for all coins at once |
 | `Services/MarketClock.swift` | Local market-hours fallback |
 | `Store/QuoteStore.swift` | Observable state + foreground refresh loop |
 | `Views/ContentView.swift` | Vertical crown-driven pager |

@@ -1,17 +1,34 @@
 import Foundation
 
+/// What kind of thing a row is, which decides where its quote comes from and how the
+/// change is labelled.
+enum AssetKind: Sendable {
+    /// US-listed stock or ETF, quoted by Finnhub. Change is measured from today's open.
+    case stock
+    /// Cryptocurrency, quoted by CoinGecko. Change is a rolling 24-hour figure.
+    case crypto
+}
+
 struct Stock: Identifiable, Hashable, Sendable {
     let ticker: String
     let name: String
     var currency: String = "USD"
+    var kind: AssetKind = .stock
+    /// CoinGecko coin id for crypto rows, e.g. "ondo-finance". Unused for stocks.
+    var coinID: String? = nil
 
     var id: String { ticker }
 
-    /// Image set name inside `Assets.xcassets/Logos`. One circle-clipped PNG per ticker.
+    /// Image set name inside `Assets.xcassets/Logos`. One circle-clipped PNG per row.
     var logoAssetName: String { ticker }
+
+    static func crypto(_ ticker: String, _ name: String, coinID: String) -> Stock {
+        Stock(ticker: ticker, name: name, currency: "USD", kind: .crypto, coinID: coinID)
+    }
 }
 
-/// Hardcoded v1 watchlist. Kept alphabetical by ticker at runtime, so order here does not matter.
+/// Hardcoded v1 watchlist: stocks first, alphabetical by ticker, then the coins in the
+/// order they were chosen.
 enum Watchlist {
     static let stocks: [Stock] = [
         Stock(ticker: "TSLA", name: "Tesla"),
@@ -28,4 +45,15 @@ enum Watchlist {
         Stock(ticker: "ADUR", name: "Aduro Clean Technologies"),
     ]
     .sorted { $0.ticker < $1.ticker }
+
+    static let coins: [Stock] = [
+        .crypto("ETH", "Ethereum", coinID: "ethereum"),
+        .crypto("LIT", "Lighter", coinID: "lighter"),
+        .crypto("MORPHO", "Morpho", coinID: "morpho"),
+        .crypto("ONDO", "Ondo", coinID: "ondo-finance"),
+        .crypto("CASHCAT", "Cash Cat", coinID: "cash-cat"),
+    ]
+
+    /// What the app shows, in page order.
+    static let all: [Stock] = stocks + coins
 }

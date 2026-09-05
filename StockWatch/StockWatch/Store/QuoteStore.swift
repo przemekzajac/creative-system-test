@@ -3,8 +3,9 @@ import Observation
 
 /// Owns the watchlist quotes and the foreground refresh loop.
 ///
-/// Refresh budget: (watchlist size + 1) calls per refresh. With 12 tickers at a 30 s cadence
-/// that is 26 calls/min, inside Finnhub's free-tier limit of 60/min.
+/// Refresh budget per pass: one Finnhub call per stock, one market-status call, and a single
+/// CoinGecko call covering every coin. With 12 stocks at a 30 s cadence that is 26 Finnhub
+/// calls/min, inside the free-tier limit of 60/min.
 @MainActor
 @Observable
 final class QuoteStore {
@@ -33,18 +34,21 @@ final class QuoteStore {
     private(set) var isRefreshing = false
 
     private let client: FinnhubClient
+    private let coinClient: CoinGeckoClient
     private let regularInterval: TimeInterval
     private let offHoursInterval: TimeInterval
     private var loopTask: Task<Void, Never>?
 
     init(
-        stocks: [Stock] = Watchlist.stocks,
+        stocks: [Stock] = Watchlist.all,
         client: FinnhubClient = FinnhubClient(apiKey: Secrets.trimmedAPIKey),
+        coinClient: CoinGeckoClient = CoinGeckoClient(demoAPIKey: Secrets.coinGeckoDemoKey),
         regularInterval: TimeInterval = 30,
         offHoursInterval: TimeInterval = 60
     ) {
         self.stocks = stocks
         self.client = client
+        self.coinClient = coinClient
         self.regularInterval = regularInterval
         self.offHoursInterval = offHoursInterval
     }
@@ -72,16 +76,17 @@ final class QuoteStore {
         loopTask = nil
     }
 
-    /// One full refresh: market status + every quote, fetched concurrently.
+    /// One full refresh: market status, every stock quote, and all coins, fetched concurrently.
     func refresh() async {
         guard hasAPIKey, !isRefreshing else { return }
         isRefreshing = true
         defer { isRefreshing = false }
 
         async let statusTask = fetchMarketSession()
+        async let coinTask = fetchCoinQuotes()
 
         let results = await withTaskGroup(of: (String, Result<Quote, Error>).self) { group in
-            for stock in stocks {
+            for stock in stocks where stock.kind == .stock {
                 group.addTask { [client] in
                     do {
                         return (stock.ticker, .success(try await client.quote(for: stock.ticker)))
@@ -98,6 +103,24 @@ final class QuoteStore {
         marketSession = await statusTask
 
         var anySuccess = false
+        switch await coinTask {
+        case .success(let coinQuotes):
+            for coin in stocks where coin.kind == .crypto {
+                guard let id = coin.coinID else { continue }
+                if let quote = coinQuotes[id] {
+                    quotes[coin.ticker] = quote
+                    errors[coin.ticker] = nil
+                    anySuccess = true
+                } else {
+                    errors[coin.ticker] = "No data for \(coin.ticker)"
+                }
+            }
+        case .failure(let error):
+            for coin in stocks where coin.kind == .crypto {
+                errors[coin.ticker] = error.localizedDescription
+            }
+        }
+
         for (ticker, result) in results {
             switch result {
             case .success(let quote):
@@ -110,6 +133,16 @@ final class QuoteStore {
             }
         }
         if anySuccess { lastUpdated = Date() }
+    }
+
+    private func fetchCoinQuotes() async -> Result<[String: Quote], Error> {
+        let ids = stocks.compactMap { $0.kind == .crypto ? $0.coinID : nil }
+        guard !ids.isEmpty else { return .success([:]) }
+        do {
+            return .success(try await coinClient.quotes(for: ids))
+        } catch {
+            return .failure(error)
+        }
     }
 
     private func fetchMarketSession() async -> MarketSession {

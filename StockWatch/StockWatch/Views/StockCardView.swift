@@ -85,12 +85,16 @@ struct StockCardView: View {
         if let error { return error }
         guard let lastUpdated else { return "Loading…" }
         let time = lastUpdated.formatted(date: .omitted, time: .shortened)
-        return "\(session.label) · \(time)"
+        // Coins trade around the clock and CoinGecko reports a rolling 24-hour change,
+        // so labelling it with a market session would be wrong.
+        let label = stock.kind == .crypto ? "24H" : session.label
+        return "\(label) · \(time)"
     }
 
     private var accessibilityReturnText: String {
         guard let quote else { return "No data yet" }
-        return "Today \(quote.formattedChangePercent)"
+        let period = stock.kind == .crypto ? "24 hours" : "Today"
+        return "\(period) \(quote.formattedChangePercent)"
     }
 }
 
@@ -110,6 +114,16 @@ struct StockCardView: View {
         quote: Quote(price: 91.04, previousClose: 103.9, changePercent: -12.374, lastTradeAt: .now),
         error: nil,
         session: .postMarket,
+        lastUpdated: .now
+    )
+}
+
+#Preview("Crypto") {
+    StockCardView(
+        stock: .crypto("CASHCAT", "Cash Cat", coinID: "cash-cat"),
+        quote: Quote(price: 0.2403, previousClose: 0.2622, changePercent: -8.364, lastTradeAt: .now),
+        error: nil,
+        session: .closed,
         lastUpdated: .now
     )
 }

@@ -22,8 +22,16 @@ struct Quote: Equatable, Sendable {
         return String(format: "%+.2f%%", value)
     }
 
-    /// "1,234.56"
+    /// "2,457.64", "0.3696", "0.000042" — more decimals as the price gets smaller, so
+    /// sub-dollar coins do not all render as "0.00".
     var formattedPrice: String {
-        price.formatted(.number.precision(.fractionLength(2)))
+        let magnitude = abs(price)
+        let decimals: Int
+        switch magnitude {
+        case 1...: decimals = 2
+        case 0.01..<1: decimals = 4
+        default: decimals = 6
+        }
+        return price.formatted(.number.precision(.fractionLength(decimals)))
     }
 }
