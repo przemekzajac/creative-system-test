@@ -1,8 +1,20 @@
 import Foundation
 
-/// Local secrets. Get a free key at https://finnhub.io/register and paste it below.
-/// The free tier is for personal, non-commercial use: 60 REST calls/min, real-time US quotes.
 enum Secrets {
-    static let placeholder = "YOUR_FINNHUB_API_KEY"
-    static let finnhubAPIKey = placeholder
+
+    // ─────────────────────────────────────────────────────────────────────
+    //  PASTE YOUR FINNHUB API KEY BETWEEN THE QUOTES ON THE LINE BELOW.
+    //  Get one free at https://finnhub.io/register
+    // ─────────────────────────────────────────────────────────────────────
+
+    static let finnhubAPIKey = ""
+
+    // ─────────────────────────────────────────────────────────────────────
+    //  Nothing below this line needs editing.
+    // ─────────────────────────────────────────────────────────────────────
+
+    /// The key with any accidentally pasted spaces or newlines removed.
+    static var trimmedAPIKey: String {
+        finnhubAPIKey.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }

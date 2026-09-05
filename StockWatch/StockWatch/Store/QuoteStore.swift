@@ -39,7 +39,7 @@ final class QuoteStore {
 
     init(
         stocks: [Stock] = Watchlist.stocks,
-        client: FinnhubClient = FinnhubClient(apiKey: Secrets.finnhubAPIKey),
+        client: FinnhubClient = FinnhubClient(apiKey: Secrets.trimmedAPIKey),
         regularInterval: TimeInterval = 30,
         offHoursInterval: TimeInterval = 60
     ) {

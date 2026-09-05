@@ -30,8 +30,16 @@ Steps 1–7 put the app on your own watch. Step 8 is only if you want it on the 
 ## 3. Get a free Finnhub API key (2 min)
 
 1. Go to <https://finnhub.io/register>, sign up, copy the key from the dashboard.
-2. Open `StockWatch/StockWatch/Secrets.swift` (TextEdit is fine, or Xcode once the project
-   is open) and replace `YOUR_FINNHUB_API_KEY` with your key. Keep the quotes. Save.
+2. Open `StockWatch/StockWatch/Secrets.swift` **in Xcode** (click Secrets in the file list;
+   do not use TextEdit, it can save the file in a format Xcode cannot read). Find this line
+   near the top:
+
+   ```swift
+   static let finnhubAPIKey = ""
+   ```
+
+   Click between the two quotes and paste your key, so it reads
+   `static let finnhubAPIKey = "d1abc23xyz..."`. Save with Cmd+S, then press Run again.
 3. Do not share this file or post it publicly; the key is tied to your account.
 
 ## 4. Open the project

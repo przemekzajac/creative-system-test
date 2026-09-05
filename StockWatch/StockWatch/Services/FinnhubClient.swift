@@ -33,8 +33,11 @@ struct FinnhubClient: Sendable {
 
     private static let baseURL = URL(string: "https://finnhub.io/api/v1")!
 
+    /// False while the key is still blank or is one of the placeholder strings
+    /// earlier versions of this file shipped with.
     var hasAPIKey: Bool {
-        !apiKey.isEmpty && apiKey != Secrets.placeholder
+        let key = apiKey.trimmingCharacters(in: .whitespacesAndNewlines)
+        return !key.isEmpty && !key.hasPrefix("YOUR_") && !key.hasPrefix("PASTE_")
     }
 
     /// GET /quote — current price, previous close and day change for one symbol.

@@ -45,7 +45,7 @@ private struct MissingAPIKeyView: View {
         VStack(spacing: 8) {
             Text("No API key")
                 .font(.app(20, weight: .bold))
-            Text("Paste your free Finnhub key into Secrets.swift and rebuild.")
+            Text("Paste your free Finnhub key into Secrets.swift, then press Run again.")
                 .font(.app(13, weight: .medium))
                 .foregroundStyle(Theme.secondaryText)
                 .multilineTextAlignment(.center)
