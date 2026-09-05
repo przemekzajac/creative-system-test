@@ -64,3 +64,13 @@ Layout, all centered, top to bottom: TEXT headline → DOG cutout →
 | 8 | Chihuahua | Treat or supplement? Both. | Sea Glass | `assets/ads/08-chihuahua-treat-seaglass.png` |
 
 Verified: 0% near-white pixels in every file — the white backdrop is fully keyed out.
+
+## StockWatch app
+
+Standalone watchOS app in `StockWatch/` (XcodeGen `project.yml`, SwiftUI, watchOS 10+).
+Shows today's % return per ticker, one crown-scrolled page per row: 12 stocks alphabetical,
+then 5 coins in a fixed order. Data: Finnhub free tier (`/quote`, `/stock/market-status`) for
+stocks, CoinGecko `/simple/price` (no key) for crypto, whose change is a rolling 24h figure.
+Finnhub key lives in `StockWatch/StockWatch/Secrets.swift`. Style: Activity Digital face (black, SF Pro bold,
+green `#92E82A` / red `#FA114F` / white). Hardcoded watchlist and logo image sets in
+`Models/Stock.swift` (`Watchlist.all`) and `Assets.xcassets/Logos/`. See `StockWatch/README.md`.
