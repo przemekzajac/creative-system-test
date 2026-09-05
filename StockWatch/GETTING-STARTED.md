@@ -18,33 +18,29 @@ Steps 1–7 put the app on your own watch. Step 8 is only if you want it on the 
 3. Xcode → **Settings** → **Platforms**: make sure **watchOS** is installed (download it if not).
    This gives you the Apple Watch simulator.
 
-## 2. Get the code
+## 2. Get the code (no Terminal needed)
 
-1. Install Homebrew if you don't have it: open **Terminal** (Cmd+Space, type Terminal) and
-   paste the one-liner from <https://brew.sh>.
-2. In Terminal:
-   ```sh
-   brew install git xcodegen
-   git clone https://github.com/przemekzajac/creative-system-test.git
-   cd creative-system-test
-   git checkout claude/smartwatch-stock-returns-nnirrn
-   cd StockWatch
-   ```
+1. In a browser, logged in to GitHub, open
+   <https://github.com/przemekzajac/creative-system-test/archive/refs/heads/claude/smartwatch-stock-returns-nnirrn.zip>.
+   It downloads a zip of this branch.
+2. Double-click the zip in **Downloads**. A folder appears. Drag it somewhere you will find
+   it again, for example **Documents**.
+3. Inside it, open the **StockWatch** folder. You will see **StockWatch.xcodeproj** (blue icon).
 
 ## 3. Get a free Finnhub API key (2 min)
 
 1. Go to <https://finnhub.io/register>, sign up, copy the key from the dashboard.
-2. Open `StockWatch/Secrets.swift` in any text editor and replace `YOUR_FINNHUB_API_KEY`
-   with your key. Keep the quotes.
-3. Do not share this file or commit it publicly; the key is tied to your account.
+2. Open `StockWatch/StockWatch/Secrets.swift` (TextEdit is fine, or Xcode once the project
+   is open) and replace `YOUR_FINNHUB_API_KEY` with your key. Keep the quotes. Save.
+3. Do not share this file or post it publicly; the key is tied to your account.
 
-## 4. Generate and open the Xcode project
+## 4. Open the project
 
-```sh
-xcodegen generate
-open StockWatch.xcodeproj
-```
-Xcode opens with the project. On the left you see the files; the big area is the editor.
+Double-click **StockWatch.xcodeproj**. Xcode opens with the files listed on the left.
+If Xcode asks whether to trust the project or enable plugins, click **Trust** / **Enable**.
+
+(For the curious: `project.yml` in the same folder can regenerate this project with the
+XcodeGen tool. You never need to touch it.)
 
 ## 5. Tell Xcode who you are (signing)
 

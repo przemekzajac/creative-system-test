@@ -35,16 +35,8 @@ from installing Xcode to the App Store.
 
 1. Get a free API key at <https://finnhub.io/register> and paste it into
    `StockWatch/Secrets.swift` (replace `YOUR_FINNHUB_API_KEY`).
-2. Generate the Xcode project:
-   ```sh
-   brew install xcodegen
-   cd StockWatch
-   xcodegen generate
-   open StockWatch.xcodeproj
-   ```
-   Alternatively, without XcodeGen: Xcode → File → New → Project → watchOS → App, product name
-   `StockWatch`, then delete the template `ContentView.swift`, `StockWatchApp.swift` and
-   `Assets.xcassets`, and drag the contents of `StockWatch/StockWatch/` into the target.
+2. Open `StockWatch.xcodeproj`. (It is committed; `project.yml` can regenerate it with
+   `xcodegen generate` if you ever restructure the sources.)
 3. In Xcode select the target → *Signing & Capabilities* → pick your Team. A free Apple ID
    works for installing on your own watch (the install expires after 7 days; a paid developer
    account extends that to a year).
