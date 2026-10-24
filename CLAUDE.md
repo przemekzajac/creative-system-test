@@ -64,3 +64,26 @@ Layout, all centered, top to bottom: TEXT headline → DOG cutout →
 | 8 | Chihuahua | Treat or supplement? Both. | Sea Glass | `assets/ads/08-chihuahua-treat-seaglass.png` |
 
 Verified: 0% near-white pixels in every file — the white backdrop is fully keyed out.
+
+### Video — Magic Eraser Reel (9:16, 18 s)
+
+Meta Reels/Stories ad for Canva's Magic Eraser, generated with Seedance 2.5 on
+Artlist (Standard, 9:16, fixed 18 s, Draft 480p → render 1080p). Scenario,
+Meta specs, safe zones and the copy-paste prompt live in
+`video/magic-eraser-reel/`.
+
+| Beat | Time | On-screen text |
+| ---- | ---- | -------------- |
+| 1 Problem | 0–3 s | This photo was perfect… until I noticed THAT. |
+| 2 Action | 3–7 s | Reshoot it? Nope. |
+| 3 Payoff | 7–13 s | Just erase it. |
+| 4 Outcome | 13–18 s | Post-ready. No reshoot required. → Clean up your photo in Canva |
+
+| File | Purpose |
+| ---- | ------- |
+| `video/magic-eraser-reel/seedance-prompt.md` | Prompt + Artlist settings + fix-it table |
+| `video/magic-eraser-reel/README.md` | Scenario, Meta specs, Canva UX notes, how-to, sources |
+| `video/magic-eraser-reel/references/soap-hero.png` | Hero product reference (`@Image 1`) |
+| `video/magic-eraser-reel/references/storyboard.png` | Original storyboard |
+
+Text must stay inside Meta's safe zone: clear of top 14 %, bottom 35 %, 6 % sides.
