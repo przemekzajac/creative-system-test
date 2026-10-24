@@ -9,6 +9,15 @@
 | `seedance-prompt.md` | The prompt to paste into Artlist + settings + fix-it table |
 | `references/soap-hero.png` | Hero product photo ("safa" organic soap bar). Upload as `@Image 1`. 684×866 px |
 | `references/storyboard.png` | The original 4-beat storyboard this scenario follows |
+| `seedance-2-mini-15s-prompt.md` | 15 s variant for Seedance 2.0 Mini (max 15 s) |
+| `omni-10s-prompt.md` | 10 s variant for Omni 1.1, no generated audio |
+| `kling-10s-prompt.md` | 10 s variant for Kling 2.5 Turbo Pro, no generated audio |
+
+> **Generation status:** not generated yet. On 2026-10-24 the Artlist account was on the free
+> trial: no AI credits, one free video generation. Seedance 2.5 is not covered by the free
+> generation, and Seedance 2.0 Mini, Omni 1.1 and Kling 2.5 Turbo Pro were all refused as
+> "not included in your current plan" (nothing charged). The reference image is already uploaded
+> to Artlist. Generating needs an Artlist plan with AI credits.
 
 ## Scenario
 
